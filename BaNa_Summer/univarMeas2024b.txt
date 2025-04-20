@@ -1,0 +1,107 @@
+Univariate Descriptive Statistics -- Working with Python
+	FYI:  Python is a VERY marketable skill; add to your resume!
+	Reference materials：
+		This discussion outline/script:  univarMeas2024b.txt
+		Ppt outline; installing Jupyter Notebook:  condaInstall2023a.pptx
+		Python fundamentals for analytics:  pyAnalyticsIntro2024b.txt
+	Initial data preparation, using Excel to create the CSV file
+		Open the Tips data set (tipsData.xlsx)
+		Save the file as tipsData.csv
+		Use File Explorer to find that file 
+			Use NotePad++ to open it
+			Examine the file contents (format typical of CSV files)
+	Install Jupyter Notebook (jN; app contained in Anaconda)
+		We will use jN to write/run Python code for analytics
+		Refer to the PowerPoint outline 
+			Installation (slides 1-7)
+			Home directory (slide 6) for jN is c:\users\userName (i.e., YOUR userName)
+			Using File Explorer, open you jN home directory and copy tipsData.csv to there
+			Create a new Python script in jN (slide 8)
+			Save the file as tipsAnalytics2024b1 (jN will add the .ipynb extension)
+			Write some code (slide 9) and run it
+	Python
+		Is a programming language
+			Developed primarily for app development
+			Is "open source" （actual code is available, as well as apps developed)
+				Therefore, many people have written extensions (modules)
+				Available to anyone, anywhere in the world
+				Many of those extensions support analytics	
+					Especially AI development (e.g., machine learning)
+					Traditional data analysis (description/inference)
+					Similar to Excel add-ins, but open source
+					Consider tipsAnalytics2024b1 -> pandas
+		Note the sample code from slide 9
+			Programming statements are like food prep recipes:
+				Specify procedures:  input/processing/output
+				Call "functions" (i.e., pre-written/blackbox code)
+				Detail logic:  sequence/selection/repetition/jumping
+				Import extensions (modules/libraries): avoids getting bogged down in procedures
+			First statement:  calls print() function (i.e., output statement)
+			Next:  
+				Calls input() function to ask end-user for name
+				Assigns result to a memory location named strGuestName
+				Calls print() function to display the specified output
+			Then:  
+				Uses the import statement to make the pandas code available
+				Assigns the alias pd to that imported code
+				Uses the read_csv() method to assign the tipsData.csv file to an internal dataset (tipsAnalysis)
+					A "method" is just a function belonging to other sets of code
+					An internal dataset created by pandas is referred to as a "dataframe"
+				Uses the describe() method belonging to the tipsAnalysis dataframe 
+					Calculates and displays descriptive statistics for all the variables in the tipsAnalysis dataframe
+					Argument inside the describe() method specifies ALL variables, not just numeric ones
+					Results:
+						unique -> number of unique values for that column/variable
+						top/freq -> most common value and how many observations of that value
+						NaN -> not a number; i.e., no value calculated
+						Note:  categorical variables are non-numeric
+							Descriptive statistics are meaningless
+							BUT, we can describe quantitatively -> using proportions
+							Such variables need first to be transformed to dummy/binary variables (as in Excel demo)
+			Now, let's use Python to do some data prep and then some descriptive analyses
+				Data prep:  create a new variable (tipRate) and dummy/binary variables
+					tipsAnalysis['tipRate'] = tipsAnalysis['tip'] / tipsAnalysis['total_bill'] 
+					Display top 10 lines of dataframe -> tipsAnalysis.head(10)
+					Create dummy variables and a new dataframe; display the results
+						newTipsAnalysis = pd.get_dummies(tipsAnalysis, prefix=None, prefix_sep='_')
+						newTipsAnalysis.head(10)
+						Also the metadata -> newTipsAnalysis.info()
+						Then, the descriptive statistics -> newTipsAnalysis.describe()
+				Interpret the results now . . . 
+				More precise measures:  dataFrame['varName'].statName()	
+					newTipsAnalysis['tipRate'].median()
+					fltMedian = newTipsAnalysis['tipRate'].median()
+					print('The median value of tipRate is ' + str(fltMedian) + '.')
+			We can use the descriptive measures to make inferences (~predictions)
+				A 95% level confidence interval estimate of the average
+				Recall first that the Tips data is only a sample
+				But we can use it to predict (and plan for) future patronage
+					Calculate the observed average (xBar)
+					Calculate the observed standard deviation (s)
+					Calculate the standard error of the mean (s/sqrt(n))
+					Look up the Z value corresponding to a 95% level of confidence -> 1.96
+					We can then be 95% confident the process average is between
+						xBar - Z*s/sqrt(n)     [note that Z*stdErr is "margin of error"]
+							and
+						xBar + Z*s/sqrt(n)
+				Some Python code for this is the following:
+					xBar = newTipsAnalysis['total_bill'].mean()
+					print(xBar)
+					s = newTipsAnalysis['total_bill'].std()
+					print(s)
+					n = newTipsAnalysis['total_bill'].count()
+					print(n)
+					Z = 1.96     # Z-score corresponding to a 95% level confidence interval
+					fltStdErr = s/(n**.5)
+					print(fltStdErr)
+					fltCI_Lower = xBar - Z*fltStdErr
+					print(fltCI_Lower)
+					fltCI_Upper = xBar + Z*fltStdErr
+					print(fltCI_Upper)
+	When finished writing the Python code and running it, use File Explorer
+	to open your jN home directory, sort the files according to date, and 
+	drag your tipsAnalytics2024b1.ipynb file into the Canvas assignment 
+	submission page and click the Submit button.
+Now that we have gone through an introduction to Python:
+	Some potentially helpful guidelines for working with Python for analytics:
+	Refer to pyAnalyticsIntro2024b.txt . . . 

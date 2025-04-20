@@ -1,0 +1,40 @@
+Descriptive Data Mining Example:  Cluster Analysis
+	Consider times it might be useful to assign individuals to two or more groupings
+		Market segmentation for more efficient/effective advertising
+		Product segmentation, grouping products with similar characteristics
+		Developing employee teams for project management
+		Identifying "similar" investment opportunities for portfolio building
+	Recall that data mining is about letting the data build its own models
+		Machine learning:
+			Supervised -> data are fit to hypothesized models (e.g., regression)
+			Unsupervised -> data guide the model building (e.g., clustering)
+		Today, let's look at Cluster Analysis 
+			References (see Getting Started module -> "Additional Resources"):
+				Intro to Cluster Analysis (web page)
+				mEllis Clustering 2020 (jN file)
+			Our example (also in "Additional Resources")
+				class Survey Data 2024a (from Spring semester class)
+					Excel data file
+					Python solution demo (PDF file)
+						Print a hardcopy
+						Work along with the discussion <<<**
+				Purpose:  
+					Identify students with similarities; assist with teammate selection
+					Develop template for use with current student data
+				Therefore, two phases:
+					Analysis A -> clustering of old data; classSurvey2024d
+					Analysis B -> clustering of current data; classSurvey2024b2
+					Note:  Analysis A is for practice, and Analysis B is for grading
+			Demonstration of Analysis A
+				Open the data file and save it as a CSV file
+				Store the CSV file in your jN home directory
+				Open jN and start writing the code you see in the PDF file
+				Pay attention to the discussion
+					You are expected to learn how/why the code works  
+					Therefore, take NOTES!
+					Refer also to pyAnalyticsIntro2024b.txt (in "Additional Resources")
+			If your jN script works correctly, save a copy as classSurvey2024b2
+				Open that copy and rework as appropriate to complete the analysis
+					of the current data.
+				Submit that jN file in Canvas and use the results to assist you 
+					in finding a teammate for future work.
